@@ -7,6 +7,7 @@ import {
   TouchableHighlight,
   View
 } from "react-native";
+import ActionButton from "react-native-action-button";
 
 export default class ContactListScreen extends React.Component {
   static navigationOptions = {
@@ -30,6 +31,12 @@ export default class ContactListScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     navigate("ContactDetails", { contact: item });
+  };
+
+  newContact = () => {
+    const { navigate } = this.props.navigation;
+
+    navigate("AddContact");
   };
 
   renderItem = ({ item }) =>
@@ -57,6 +64,7 @@ export default class ContactListScreen extends React.Component {
           renderItem={this.renderItem}
           keyExtractor={(item, index) => item.id}
         />
+        <ActionButton buttonColor="#333" onPress={this.newContact} />
       </View>
     );
   }
